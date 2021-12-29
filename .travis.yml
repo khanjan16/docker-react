@@ -8,3 +8,16 @@ language: generic
 script:
   - docker run -e CI=true krathi/docker-react npm run test -- --coverage
 
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker-react"
+  env : "Dockerreact-env"
+  bucket_name: "elasticbeanstalk-us-east-2-262494225163"
+  bucket_path: "docker-react"
+  on :
+    branch: master
+
+  acess_key_id: $AWS_ACCESS_KEY
+  seceret_access_key: "$AWS_SECRET_KEY"
+  
